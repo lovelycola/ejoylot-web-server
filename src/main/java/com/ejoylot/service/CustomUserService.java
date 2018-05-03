@@ -16,7 +16,6 @@ public class CustomUserService implements UserDetailsService {
     SysRoleMapper sysRoleMapper;
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        System.out.println(s);
         SysUser user = sysUserMapper.selectByUserName(s);
         if (user == null) {
             throw new UsernameNotFoundException("用户名不存在");
