@@ -1,12 +1,14 @@
 package com.ejoylot.entry;
 
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class SysUser{// implementsUserDetails {
+public class SysUser implements UserDetails {
     private Integer id;
 
     private String username;
@@ -28,25 +30,25 @@ public class SysUser{// implementsUserDetails {
         return username;
     }
 
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return true;
-//    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
     public List<SysRole> getRoles() {
         return roles;
@@ -59,16 +61,16 @@ public class SysUser{// implementsUserDetails {
     public void setUsername(String username) {
         this.username = username == null ? null : username.trim();
     }
-//
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        List<GrantedAuthority> auths = new ArrayList<>();
-//        List<SysRole> roles = this.getRoles();
-//        for (SysRole role : roles) {
-//            auths.add(new SimpleGrantedAuthority(role.getName()));
-//        }
-//        return auths;
-//    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> auths = new ArrayList<>();
+        List<SysRole> roles = this.getRoles();
+        for (SysRole role : roles) {
+            auths.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return auths;
+    }
 
     public String getPassword() {
         return password;

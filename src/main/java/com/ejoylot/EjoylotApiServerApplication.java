@@ -16,15 +16,11 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com.ejoylot.mapper.**")
 //启动oauth校验
 //@EnableAuthorizationServer
-public class DemoApplication {
+public class EjoylotApiServerApplication {
 
-    protected static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
+    protected static final Logger logger = LoggerFactory.getLogger(EjoylotApiServerApplication.class);
 
-    //start springboot
     public static void main(String[] args) {
-
-        logger.info("SpringBoot开始加载");
-        SpringApplication.run(DemoApplication.class,args);
-        logger.info("SpringBoot加载完毕");
+        SpringApplication.run(EjoylotApiServerApplication.class,args);
     }
 }
