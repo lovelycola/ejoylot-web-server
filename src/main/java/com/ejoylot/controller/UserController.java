@@ -2,20 +2,31 @@ package com.ejoylot.controller;
 
 import com.ejoylot.entry.SysUser;
 import com.ejoylot.mapper.SysUserMapper;
+import com.ejoylot.util.SpringContextUtil;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @RequestMapping("user")
 @RestController
 public class UserController {
 
     protected static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    @Bean
+    @LoadBalanced
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
     @Autowired
     private SysUserMapper userMapper;
 
@@ -25,6 +36,13 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public String getUsers() {
+
+        RestTemplate restTemp = (RestTemplate) SpringContextUtil.getBean(RestTemplate.class);
+
+        String val=restTemp.getForEntity("http://EJOYLOT-API-DEMO-SERVER/eureka/step2", String.class).getBody();
+
+        System.out.println("getVal="+val);
+
         return "getUsers";
     }
 

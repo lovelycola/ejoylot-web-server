@@ -56,6 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/swagger-ui**")
                 .permitAll()
+                .antMatchers("/eureka2/**")
+                .permitAll()
                 .and()
                 .sessionManagement()
                 .and()
