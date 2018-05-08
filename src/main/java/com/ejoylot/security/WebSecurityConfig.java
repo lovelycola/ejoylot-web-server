@@ -1,6 +1,5 @@
 package com.ejoylot.security;
 
-import com.ejoylot.service.CustomUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
