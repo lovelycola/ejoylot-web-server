@@ -1,7 +1,9 @@
 package com.ejoylot.controller;
 
 import com.ejoylot.entry.SysUser;
-import com.ejoylot.service.UserService;
+import com.ejoylot.exception.BaseException;
+import com.ejoylot.message.ResultEntity;
+import com.ejoylot.service.UserServiceImpl;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -18,29 +20,28 @@ public class UserController {
     protected static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Secured({"ROLE_ADMIN"})
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation(value="创建用户", notes="根据User对象创建用户")
     @ApiImplicitParam(name = "user", value = "创建的用户实体", required = true, dataType = "SysUser")
     @ResponseBody
-    public Object save(@AuthenticationPrincipal SysUser loginedUser, @RequestBody SysUser user) {
+    public ResultEntity save(@AuthenticationPrincipal SysUser loginedUser, @RequestBody SysUser user) throws BaseException {
         logger.info("execut admin ,user,insert method");
         logger.info(loginedUser.getUsername() + " execute");
-
         userService.addAccount(user);
-        return user;
+        return ResultEntity.success(user);
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     @ResponseBody
-    public String delete(@AuthenticationPrincipal SysUser loginedUser,@PathVariable int id) {
+    public ResultEntity delete(@AuthenticationPrincipal SysUser loginedUser,@PathVariable int id) throws BaseException {
         logger.info("execut admin delete method");
         logger.info(loginedUser.getUsername() + " execute");
         userService.deleteAccount(id);
-        return "deleteUser";
+        return ResultEntity.success("deleteUser");
     }
 //
 

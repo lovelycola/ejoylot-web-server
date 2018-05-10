@@ -1,23 +1,21 @@
 package com.ejoylot.controller;
 
 import com.ejoylot.entry.SysUser;
+import com.ejoylot.message.ResultEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class LoginController {
 
     @RequestMapping(value = "/login")
     @ResponseBody
-    public Object login(@AuthenticationPrincipal SysUser loginedUser, @RequestParam(name = "logout", required = false) String logout) {
+    public ResultEntity login(@AuthenticationPrincipal SysUser loginedUser, @RequestParam(name = "logout", required = false) String logout) {
         if (logout != null) {
-            return null;
+            return ResultEntity.fail(null);
         }
         if (loginedUser != null) {
-            return loginedUser;
+            return ResultEntity.success(loginedUser);
         }
         return null;
     }

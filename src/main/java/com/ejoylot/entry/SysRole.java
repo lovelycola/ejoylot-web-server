@@ -1,6 +1,6 @@
 package com.ejoylot.entry;
 
-public class SysRole {
+public class SysRole implements java.io.Serializable {
     private Integer id;
 
     private String name;

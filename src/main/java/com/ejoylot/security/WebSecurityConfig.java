@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     UserDetailsService customUserService() {
-        return new CustomUserService();
+        return new WebSecurityService();
     }
 
     @Override

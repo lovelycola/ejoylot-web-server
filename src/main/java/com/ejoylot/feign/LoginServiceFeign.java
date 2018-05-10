@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * User: dennis
  */
 @FeignClient(name="ejoylot-account-server", configuration = FeignConfig.class)
-public interface LoginServiceFeignImpl {
+public interface LoginServiceFeign {
 
     @RequestMapping(method = RequestMethod.POST, value = "/user/login", consumes = "application/json")
     Object login(@RequestParam("userName") String userName, @RequestParam("passwd") String passwd);

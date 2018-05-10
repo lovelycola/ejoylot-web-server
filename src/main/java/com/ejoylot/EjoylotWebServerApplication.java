@@ -30,4 +30,10 @@ public class EjoylotWebServerApplication {
         ApplicationContext app = SpringApplication.run(EjoylotWebServerApplication.class, args);
         SpringContextUtil.setApplicationContext(app);
     }
+
+//    @Bean
+//    public HttpMessageConverter<?> messageConverter(){
+//        return new ResultEntityConverter();
+//    }
+
 }

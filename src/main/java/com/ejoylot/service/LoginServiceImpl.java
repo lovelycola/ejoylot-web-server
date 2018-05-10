@@ -1,8 +1,8 @@
 package com.ejoylot.service;
 
 import com.ejoylot.entry.SysUser;
-import com.ejoylot.feign.UserServiceFeignImpl;
-import com.ejoylot.service.impl.UserServiceImpl;
+import com.ejoylot.feign.UserServiceFeign;
+import com.ejoylot.service.impl.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +15,13 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class UserService implements UserServiceImpl {
+public class LoginServiceImpl implements LoginService {
 
     @Autowired
-    UserServiceFeignImpl  userServiceFeign;
-    @Override
-    public Object addAccount(SysUser sysUser) {
-        return userServiceFeign.addAccount(sysUser);
-    }
+    UserServiceFeign userServiceFeign;
 
     @Override
-    public Object deleteAccount(int id) {
-        return userServiceFeign.deleteAccount(id);
+    public SysUser login(String userName, String password) {
+        return null;
     }
 }

@@ -9,7 +9,7 @@ import com.ejoylot.entry.SysUser;
  * Date: 18-5-7
  * User: dennis
  */
-public interface LoginServiceImpl {
+public interface LoginService {
 
     SysUser login(String userName,String password);
 }
